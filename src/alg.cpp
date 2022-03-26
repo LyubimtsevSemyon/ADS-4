@@ -45,7 +45,7 @@ k++;
 k = mid - 1;
 while (arr[i] + arr[k] == value && k > left) {
 sym++;
-k--;
+k -= 1;
 }
 break;
 }
