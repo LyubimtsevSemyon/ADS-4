@@ -10,24 +10,26 @@ count += 1;
 return count;
 }
 int countPairs2(int *arr, int len, int value) {
-int count = 0, left = 0, right = len - 1;
-while (left < right - 1) {//до схождения границ
-int middle = (left + right) / 2;//средний элемент
-if (arr[middle] <= value)//сужение массива
-left = middle;
-else
-right = middle;
-}
-len = right - 1;
-for (int i = len; i >=0; i--) {
-for (int j = 0; j < i; j++) {
+int count = 0;
+for (int i = 0; i < len; i++)
+for (int j = len - 1; j > i; j--)
 if (arr[i] + arr[j] == value)
 count++;
-if (arr[i] + arr[j] > value)
-break;
-}
-}
 return count;
+}
+int binar(int *arr, int l, int r, int x) {
+int lft = l, rht = r, mid = 0; bool f = 0;
+while (lft <= rht) {
+mid = (lft + rht) / 2;
+if (arr[mid] == x) {
+return binar(arr, l, mid - 1, x) + binar(arr, mid + 1, r, x) + 1;
+}
+if (x < arr[mid])
+rht = mid - 1;
+else
+lft = mid + 1;
+}
+return 0;
 }
 int countPairs3(int *arr, int len, int value) {
 int sym = 0;
@@ -45,7 +47,7 @@ k++;
 k = mid - 1;
 while (arr[i] + arr[k] == value && k > left) {
 sym++;
-k -= 1;
+k--;
 }
 break;
 }
