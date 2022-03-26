@@ -18,7 +18,7 @@ left = middle;
 else
 right = middle;
 }
-len = right-1;
+len = right - 1;
 for (int i = len; i >=0; i--) {
 for (int j = 0; j < i; j++) {
 if (arr[i] + arr[j] == value)
